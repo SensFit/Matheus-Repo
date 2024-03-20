@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Digite a quantidade de equipamentos comprados no ano
+    <input type="text" id="input_qtdEquipamento"> <br>
+    Digite o valor médio dos equipamentos
+    <input type="text" id="input_equipamento"> <br>
+    Digite o valor da mensalidade 
+    <input type="text" id="input_mensalidade"> <br>
+    Quantos alunos entrou na academia no ano?
+    <input type="text" id="input_alunos"> <br>
+    <button onclick="calcularPerda()">Calcular Perda</button>
+    <div id="div_mensagem"></div>
+    
+</body>
+</html>
+<script>
+    function calcularPerda() {
+        var qtdEquipamento = Number(input_qtdEquipamento.value)
+        var valorEquipamento = Number(input_equipamento.value * qtdEquipamento)
+        var mensalidade = Number(input_mensalidade.value)
+        var pessoas = valorEquipamento / (mensalidade * 12)
+        var alunos = Number(input_alunos.value)
+
+        div_mensagem.innerHTML = `Você gastou <b>R$${valorEquipamento}</b> em equipamentos no ano. Com o valor da sua mensalidade de <b>R$${mensalidade}</b>, significa que um equipamento que você gastou vale <b>${pessoas}</b> alunos no ano. <br> <br>
+        Será que esse gasto era mesmo necessário? Houve antes uma análise anterior relacionada aos usos de equipamentos? Houve um cuidado na hora de investir esse dinheiro? <br> <br>
+        Com isso, se a quantidade de alunos for menor que a quantidade de pessoas necessárias para um equipamento, você teve um prejuízo. <br> 
+        Quantidade de alunos pagantes: <b>${alunos}</b> <br>
+        Quantidade de pessoas necessárias para um equipamento: <b>${pessoas}</b> <br>`
+
+        if(alunos < pessoas) {
+            var perda = valorEquipamento - (alunos * (mensalidade * 12)) 
+            div_mensagem.innerHTML += `<b style="color: red">O valor da perda foi de R$${perda} anuais.</b>`
+        }
+
+    }
+</script>
